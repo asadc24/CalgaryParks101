@@ -3,6 +3,7 @@ import geojson
 import json
 
 f = open('./datasets/CoC_parks.json')
+
 f2 = open('./datasets/CoC_community.geojson')
 
 
@@ -10,6 +11,10 @@ data = json.load(f)
 data2 = geojson.load(f2)
 
 allCommunities = data2.features
+
+result_data = []
+
+
 
 
 # Found 16 to be index of equipment name
@@ -25,7 +30,6 @@ for i in data['data']:
         temp_long = float(i[21][2])
         temp_coord = (temp_long, temp_lat)
         temp_point = shapely.geometry.Point(temp_coord)
-        print(temp_point)
         for community in allCommunities:
                 polygons = [shapely.geometry.Polygon(polygon) for polygon in community.geometry['coordinates'][0]]
                 multiPolygon = shapely.geometry.MultiPolygon(polygons)
@@ -33,12 +37,13 @@ for i in data['data']:
                 if(result):
                         temp_community = community.properties['name']
                         temp_sector = community.properties['sector']
-                        print(temp_community)
-                        print(temp_sector)
-
-
-
-
+                        data = {"equipment_name": temp_equipment, "community_name": temp_community, "community_sector": temp_sector, "equipment_latitude": temp_lat, "equipment_longitutde": temp_long}
+                        result_data.append(data)
+                
+with open('newData.json', 'a') as f3:
+        json_string = json.dumps(result_data)
+        f3.write(json_string)
+f3.close()
 
 f.close()
 f2.close()
