@@ -6,7 +6,7 @@ const SearchList = ({list}) => {
   return (
     <div className="searchList">
         {list && list.map(item => (
-            <Link to={`/community/:${item}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/community/:${encodeURIComponent(item)}`} style={{ textDecoration: 'none' }}>
                 <p>{item}</p>
             </Link>
         ))}

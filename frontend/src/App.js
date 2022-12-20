@@ -10,7 +10,7 @@ function App() {
         <div className="content">
           <Routes>
             <Route exact path='/' element={<Home/>} />
-            <Route exact path='/community/:id' element={<Community/>} />
+            <Route exact path='/community/:community_name' element={<Community/>} />
           </Routes>
         </div>
       </Router>
