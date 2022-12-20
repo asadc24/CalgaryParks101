@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
+import InfoTable from "./InfoTable";
 import { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import {
@@ -24,7 +25,7 @@ ChartJS.register(
 function Info() {
   const { community_name } = useParams();
   const [info, setInfo] = useState([]);
-  const [graphData, setGraphData] = useState([{}, {datasets: []}]);
+  const [graphData, setGraphData] = useState([{}, { datasets: [] }]);
 
   // First thing we want to do is fetch all info about community. This is going to be used later....
 
@@ -62,32 +63,31 @@ function Info() {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false
+            display: false,
           },
           title: {
             display: true,
-            text: `Count of playground equipment in ${community_name.substring(1)}`,
+            text: `Count of playground equipment in ${community_name.substring(
+              1
+            )}`,
           },
-          
         },
       };
 
-
-
-
-
       let data = {
         labels,
-        datasets: [{
-          data: values,
-          backgroundColor: [
-            "rgba(75,192,192,1)",
-            "#ecf0f1",
-            "#50AF95",
-            "#f3ba2f",
-            "#2a71d0"
-          ],
-        }]
+        datasets: [
+          {
+            data: values,
+            backgroundColor: [
+              "rgba(75,192,192,1)",
+              "#ecf0f1",
+              "#50AF95",
+              "#f3ba2f",
+              "#2a71d0",
+            ],
+          },
+        ],
       };
       setGraphData([graphOptions, data]);
     }
@@ -107,15 +107,15 @@ function Info() {
         <div className="infoContent">
           <div className="title">
             <h1>Welcome to the community of {community_name.substring(1)}</h1>
-
           </div>
-          <article className="canvas-container" style={{ display: 'flex', justifyContent: 'center'}}>
+          <article
+            className="canvas-container"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
             {graphData && <Bar options={graphData[0]} data={graphData[1]} />}
-
           </article>
-
+            {graphData && <InfoTable/>}
         </div>
-
       </div>
     </div>
   );

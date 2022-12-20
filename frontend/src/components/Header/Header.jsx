@@ -11,7 +11,7 @@ const Header = () => {
         <div className="container">
           <p className="lead">YYC PARKS IS CURRENTLY A WIP. WHILE I THINK OF WHAT TO PUT HERE AND HOW TO STYLE IT, THIS IS MY TODO LIST</p>
           <ol>
-            <li>GET COMMUNITY SEARCHING WORKING</li>
+            <li>fix table in community page</li>
           </ol>
         </div>
     </div>

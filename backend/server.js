@@ -90,19 +90,5 @@ app.get('/searchcommunity', function(req, res) {
     res.send(tempData.filter(filterData).sort())
 });
 
-
-// const userController = {
-//     searchUser: async (req, res) => {
-//       try {
-//         const users = await data..find(
-//           { username: { $regex: `${req.query.username}` } },
-//           "fullname username profilePic"
-//         ).limit(10);
-//         res.json({ users });
-//       } catch (err) {
-//         return res.status(500).json({ message: err.message });
-//       }
-//     },
-
 app.listen(8080)
 
