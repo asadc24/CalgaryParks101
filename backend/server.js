@@ -1,8 +1,16 @@
 // Very basic server. Our API wont have things such as auth. It is simply a wrapper for serving the client the data needed from the json
-var data = require('../newData.json')
+var data = require('../datasets/newData.json')
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
+app.use(morgan('tiny'))
+
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    next();
+  });
 
 app.get('/', function(req, res) {
     res.send('HI, PLEASE USE AN API CLIENT TO EXPLORE THE DATA')
@@ -45,7 +53,7 @@ app.get(`/equipment/:equipmentName`, function(req, res) {
 app.get(`/sector/:sectorName`, function(req, res) {
     let sectorFilter = req.params.sectorName.substring(1).toUpperCase();
     const filterData = (equipment) => {
-        return equipment.sector_name === sectorFilter
+        return equipment.community_sector === sectorFilter
     }    
     res.send(data.data.filter(filterData))
 })
@@ -55,12 +63,46 @@ app.get(`/sector/:sectorName/:equipmentName`, function(req, res) {
     let sectorFilter = req.params.sectorName.substring(1).toUpperCase();
     let equipmentFilter = req.params.equipmentName.substring(1).toUpperCase();
     const filterData = (equipment) => {
-        return ((equipment.sector_name === sectorFilter) && (equipment.equipment_name === equipmentFilter))
+        return ((equipment.community_sector === sectorFilter) && (equipment.equipment_name === equipmentFilter))
     }    
     res.send(data.data.filter(filterData))
 })
 
 
+app.get('/searchcommunity', function(req, res) {
+    let communityFilter = req.query.community_name.toUpperCase();
+    let tempData = [];
 
-app.listen(3000)
+    for(i in data.data) {
+        if(tempData.indexOf(data.data[i].community_name) === -1) {
+            tempData.push(data.data[i].community_name)
+        }        
+    }
+
+    const filterData = (community) => {
+        if(communityFilter === '') {
+            return false
+        } else {
+            return community.startsWith(communityFilter, 0)
+        }
+    }
+
+    res.send(tempData.filter(filterData).sort())
+});
+
+
+// const userController = {
+//     searchUser: async (req, res) => {
+//       try {
+//         const users = await data..find(
+//           { username: { $regex: `${req.query.username}` } },
+//           "fullname username profilePic"
+//         ).limit(10);
+//         res.json({ users });
+//       } catch (err) {
+//         return res.status(500).json({ message: err.message });
+//       }
+//     },
+
+app.listen(8080)
 
