@@ -6,14 +6,13 @@ import './Community.css'
 import Info from './Info'
 
 const Community = () => {
-  const { community_name } = useParams()
 
 
 
 
   return (
     <div className="community">
-      <Navbar/>
+      <Navbar/> 
       <Info/>
 
 

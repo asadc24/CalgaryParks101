@@ -67,9 +67,7 @@ function Info() {
           },
           title: {
             display: true,
-            text: `Count of playground equipment in ${community_name.substring(
-              1
-            )}`,
+            text: `Count of playground equipment in ${community_name.substring(1)}`,
           },
         },
       };
@@ -101,6 +99,10 @@ function Info() {
     setDataForGraph();
   }, [info]);
 
+
+
+
+  
   return (
     <div className="info">
       <div className="container">
