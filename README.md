@@ -9,7 +9,7 @@ Python: Used for manipulating the City of Calgary datasets into a workable forma
 Node/ExpressJS: Used for setting up a REST API to call on our frontend
 
 React: Used for developing the frontend
-- Libraries used: Bootstrap CSS, Chart JS
+- Libraries used: <s>Bootstrap CSS</s>, Chart JS
 
 Insomnia: General API Endpoint testing
 
