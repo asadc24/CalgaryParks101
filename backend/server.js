@@ -12,6 +12,8 @@ app.use((req, res, next) => {
     next();
   });
 
+
+
 app.get('/', function(req, res) {
     res.send('HI, PLEASE USE AN API CLIENT TO EXPLORE THE DATA')
 })
