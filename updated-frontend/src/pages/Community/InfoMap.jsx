@@ -46,7 +46,7 @@ const InfoMap = ({info}) => {
         <Map 
             initialViewState={viewport}
             mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            mapStyle="mapbox://styles/mapbox/streets-v9"
+            mapStyle="mapbox://styles/mapbox/streets-v12"
             onViewportChange={viewport => {setViewport(viewport)}}
         >
 

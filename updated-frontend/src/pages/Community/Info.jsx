@@ -11,6 +11,7 @@ import {
   } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import InfoMap from './InfoMap';
+import InfoTable from './InfoTable';
 
 
 ChartJS.register(
@@ -134,7 +135,7 @@ const Info = () => {
 
         <div className='h-96 flex justify-center pt-4'>
             {graphData && showChart && <Bar options={graphData[0]} data={graphData[1]} />}
-            {info && showTable && <h1 className='text-white'>TABLE</h1>}
+            {info && showTable && <InfoTable/>}
             {info && showMap && <InfoMap info={info}/>}
 
         </div>
