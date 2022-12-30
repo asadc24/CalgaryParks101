@@ -10,6 +10,7 @@ import {
     Legend,
   } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import InfoMap from './InfoMap';
 
 
 ChartJS.register(
@@ -123,7 +124,7 @@ const Info = () => {
                     <li className="mr-2">
                         <p  className={!showTable ? 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:cursor-pointer' : 'inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500 hover:cursor-pointer'}    onClick={() => {setShowChart(false);setShowMap(false);setShowTable(true)}}>Table</p>
                     </li>
-                    <li class="mr-2">
+                    <li className="mr-2">
                         <p className={!showMap ? 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:cursor-pointer' : 'inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500 hover:cursor-pointer'}  onClick={() => {setShowChart(false);setShowMap(true);setShowTable(false)}}>Map</p>
                     </li>
 
@@ -131,10 +132,10 @@ const Info = () => {
             </div>
         </div>
 
-        <div className='h-96 flex justify-center'>
+        <div className='h-96 flex justify-center pt-4'>
             {graphData && showChart && <Bar options={graphData[0]} data={graphData[1]} />}
             {info && showTable && <h1 className='text-white'>TABLE</h1>}
-            {info && showMap && <h1 className='text-white'>MAP</h1>}
+            {info && showMap && <InfoMap/>}
 
         </div>
 
