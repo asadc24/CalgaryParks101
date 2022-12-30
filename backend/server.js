@@ -29,7 +29,7 @@ app.get(`/community/:communityName`, function(req, res) {
     const filterData = (equipment) => {
         return equipment.community_name === communityFilter
     }    
-    res.send(data.data.filter(filterData))
+    res.send(data.filter(filterData))
 })
 
 // To get data on specific park equipement in a specific community
@@ -39,7 +39,7 @@ app.get(`/community/:communityName/:equipmentName`, function(req, res) {
     const filterData = (equipment) => {
         return ((equipment.community_name === communityFilter) && (equipment.equipment_name === equipmentFilter))
     }    
-    res.send(data.data.filter(filterData))
+    res.send(data.filter(filterData))
 })
 
 // To get data on a specific park equipment
@@ -48,7 +48,7 @@ app.get(`/equipment/:equipmentName`, function(req, res) {
     const filterData = (equipment) => {
         return equipment.equipment_name === equipmentFilter
     }    
-    res.send(data.data.filter(filterData))
+    res.send(data.filter(filterData))
 })
 
 // To get data on park equipment in a specific city sector (ex. Northeast, northwest, etc.)
@@ -57,7 +57,7 @@ app.get(`/sector/:sectorName`, function(req, res) {
     const filterData = (equipment) => {
         return equipment.community_sector === sectorFilter
     }    
-    res.send(data.data.filter(filterData))
+    res.send(data.filter(filterData))
 })
 
 // To get data on specific park equipment in a specifc city sector
@@ -67,7 +67,7 @@ app.get(`/sector/:sectorName/:equipmentName`, function(req, res) {
     const filterData = (equipment) => {
         return ((equipment.community_sector === sectorFilter) && (equipment.equipment_name === equipmentFilter))
     }    
-    res.send(data.data.filter(filterData))
+    res.send(data.filter(filterData))
 })
 
 
@@ -75,9 +75,9 @@ app.get('/searchcommunity', function(req, res) {
     let communityFilter = req.query.community_name.toUpperCase();
     let tempData = [];
 
-    for(i in data.data) {
-        if(tempData.indexOf(data.data[i].community_name) === -1) {
-            tempData.push(data.data[i].community_name)
+    for(i in data) {
+        if(tempData.indexOf(data[i].community_name) === -1) {
+            tempData.push(data[i].community_name)
         }        
     }
 

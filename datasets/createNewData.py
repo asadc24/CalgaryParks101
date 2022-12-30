@@ -37,7 +37,7 @@ for i in data['data']:
                 if(result):
                         temp_community = community.properties['name']
                         temp_sector = community.properties['sector']
-                        data = {"equipment_name": temp_equipment, "community_name": temp_community, "community_sector": temp_sector, "equipment_latitude": temp_lat, "equipment_longitutde": temp_long}
+                        data = {"equipment_name": temp_equipment, "community_name": temp_community, "community_sector": temp_sector, "equipment_latitude": temp_lat, "equipment_longitude": temp_long}
                         result_data.append(data)
                 
 with open('newData.json', 'a') as f3:
