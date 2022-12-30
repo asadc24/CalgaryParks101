@@ -36,7 +36,7 @@ const Header = () => {
         </div>
     </div>
 
-    <div className=" h-screen mt-[-200px] text-center flex flex-col text-white">
+    <div className="  mt-[-200px] text-center flex flex-col text-white">
         <p className="md:text-2xl texl-xl font-bold text-gray-500">
             Start by searching for a community
         </p>

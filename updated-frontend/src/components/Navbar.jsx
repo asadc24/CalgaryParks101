@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import navImage from '../assets/logo-no-background.png'
+
 
 const Navbar = () => {
   return (
     <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white">
       <Link to={"/"}>
-        <h1 className="w-full text-3xl font-bold text-blue-500">YYC-PARKS</h1>
+        <img src={navImage}  className="h-16" alt="" />
       </Link>
       <ul className="flex">
         <Link to={"/"}>
