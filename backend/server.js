@@ -92,5 +92,41 @@ app.get('/searchcommunity', function(req, res) {
     res.send(tempData.filter(filterData).sort())
 });
 
+app.get('/getAllCommunities', function(req, res) {
+    let tempData = [];
+    for(i in data) {
+        if(tempData.includes(data[i].community_name)) {
+            continue
+        } else {
+            tempData.push(data[i].community_name)
+        }
+    }
+    
+    res.send({"data": shuffle(tempData)})
+
+});
+
+
+// Helper shuffle function to shuffle an array of elements
+// Algorithm used is the fihser-yates shuffle https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
+
 app.listen(8080)
 

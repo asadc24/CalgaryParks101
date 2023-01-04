@@ -5,6 +5,7 @@ import SearchList from "./SearchList";
 const Header = () => {
   const [search, setSearch] = useState("");
   const [communities, setCommunities] = useState([]);
+  const [searchCommunities, setSearchCommunities] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:8080/searchcommunity?community_name=${search}`)
@@ -12,6 +13,13 @@ const Header = () => {
       .then((data) => setCommunities(data))
       .catch((err) => console.error(err));
   }, [search]);
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/getAllCommunities`)
+      .then((res) => res.json())
+      .then((data) => setSearchCommunities(data.data))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="headerInfo">
@@ -24,11 +32,11 @@ const Header = () => {
         </h1>
         <div className="flex justify-center items-center pt-2">
             <p className="md:text-5xl sm:text-4xl text-xl font-bold py-4">
-            Find equipment in the
+            Find equipment in
             </p>
             <Typed
             className="md:text-5xl sm:text-4xl text-xl font-bold pl-3 text-blue-500"
-            strings={["North East", "South West", "North West", "South East"]}
+            strings={searchCommunities}
             typeSpeed={120}
             backSpeed={140}
             loop
