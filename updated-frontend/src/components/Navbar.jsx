@@ -13,9 +13,13 @@ const Navbar = () => {
         <Link to={"/"}>
           <li className="p-4">Home</li>
         </Link>
+        <Link to={"/nearby"}>
+          <li className="p-4">Near Me</li>
+        </Link>
         <Link to={"/about"}>
           <li className="p-4">About</li>
         </Link>
+     
       </ul>
     </div>
   );

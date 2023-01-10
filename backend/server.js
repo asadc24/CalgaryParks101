@@ -92,6 +92,24 @@ app.get('/searchcommunity', function(req, res) {
     res.send(tempData.filter(filterData).sort())
 });
 
+app.get('/getNearbyEquipment/:longitude/:latitude', function(req, res) {
+    let lat1 = req.params.latitude.substring(1).toUpperCase();
+    let long1 = req.params.longitude.substring(1).toUpperCase();
+    let temp = []
+    for(i in data) {
+        let lat2 = data[i].equipment_latitude
+        let long2 = data[i].equipment_longitude
+        if(haversine(lat1, long1, lat2, long2) < 2) {
+            temp.push(data[i])
+        }
+    }
+    res.send(temp)
+
+
+
+
+})
+
 app.get('/getAllCommunities', function(req, res) {
     let tempData = [];
     for(i in data) {
@@ -125,7 +143,32 @@ function shuffle(array) {
     }
   
     return array;
+}
+
+
+// Calculate dinstance
+function haversine(lat1, lon1, lat2, lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = deg2rad(lon2-lon1); 
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km
+    return d;
+}
+
+function deg2rad(deg) {
+    return deg * (Math.PI/180)
   }
+
+// example usage
+
+
+  
 
 
 app.listen(8080)
