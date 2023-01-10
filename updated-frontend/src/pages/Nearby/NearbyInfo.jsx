@@ -44,9 +44,10 @@ const NearbyInfo = () => {
           Here is what is near you:
         </h2>
       </div>
+        <p className='text-white flex justify-center'>(You are the black marker)</p>
       <div className="h-96 flex justify-center pt-4">
         {isFetched ? (
-          <NearbyMap info={info} />
+          <NearbyMap info={info} userCoords={userCoords}/>
         ) : (
           <Loading />
         )}

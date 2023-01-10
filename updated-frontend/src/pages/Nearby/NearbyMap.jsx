@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Map, { Marker,Popup } from 'react-map-gl';
 
 
-const NearbyMap = ({info}) => {
+const NearbyMap = ({info, userCoords}) => {
     const [viewport, setViewport] = useState({
         latitude: info[1].equipment_latitude,
         longitude: info[1].equipment_longitude,
@@ -61,6 +61,14 @@ const NearbyMap = ({info}) => {
 
             
             ))}
+
+            {userCoords && 
+            <Marker
+                longitude={userCoords.longitude}
+                latitude={userCoords.latitude}
+                color="black"
+            
+            />}
 
             {popupInfo && (
                 <Popup
