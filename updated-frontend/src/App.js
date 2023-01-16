@@ -5,6 +5,7 @@ import About from "./pages/About/About";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Nearby from "./pages/Nearby/Nearby";
+import Sector from "./pages/Sector/[id]";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path='/community/:community_name' element={<Community/>}/>
           <Route exact path='/about' element={<About/>}/>
           <Route exact path='/nearby' element={<Nearby/>}/>
+          <Route exact path='/sector/:sector_name' element={<Sector/>}/>
         </Routes>
       </Router>
       <Footer/>

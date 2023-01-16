@@ -124,6 +124,33 @@ app.get('/getAllCommunities', function(req, res) {
 
 });
 
+app.get('/getAllSectors', function(req, res) {
+    let tempData = [];
+    for (i in data) {
+        if(tempData.includes(data[i].community_sector)) {
+            continue
+        } else {
+            tempData.push(data[i].community_sector)
+        }
+    }
+    res.send({"data": tempData})
+})
+
+
+// get the communities per sector
+app.get('/getCommunityBySector', function(req, res) {
+    let result = data.reduce((result, item) => {
+        let sector = item.community_sector;
+        if (!result[sector]) {
+            result[sector] = [];
+        }
+        result[sector].push(item.community_name);
+        return result;
+        }, {});
+    
+})
+
+
 
 // Helper shuffle function to shuffle an array of elements
 // Algorithm used is the fihser-yates shuffle https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
