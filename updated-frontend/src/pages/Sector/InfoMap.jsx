@@ -8,7 +8,7 @@ const InfoMap = ({info}) => {
         longitude: info[1].equipment_longitude,
         // width: '10vw',
         // height: '100vh',
-        zoom: 13
+        zoom: 9
     })
 
     const [popupInfo, setPopupInfo] = useState(null);
