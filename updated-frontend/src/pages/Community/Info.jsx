@@ -131,7 +131,7 @@ const Info = () => {
 
         <div className='h-96 flex justify-center pt-4'>
             {graphData && showChart && <Bar options={graphData[0]} data={graphData[1]} />}
-            {info && showMap && <InfoMap info={info}/>}
+            {info && showMap && <InfoMap  info={info}/>}
         </div>
 
     </div>

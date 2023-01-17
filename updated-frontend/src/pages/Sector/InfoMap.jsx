@@ -64,15 +64,15 @@ const InfoMap = ({info}) => {
 
             {popupInfo && (
                 <Popup
-                    anchor='top'
-                    longitude={Number(popupInfo.equipment_longitude)}
-                    latitude={Number(popupInfo.equipment_latitude)}
-                    onClose={() => setPopupInfo(null)}
-                >
-                    <div>
-                        {popupInfo.equipment_name}
-                    </div>
-                </Popup>
+                anchor='top'
+                longitude={Number(popupInfo.equipment_longitude)}
+                latitude={Number(popupInfo.equipment_latitude)}
+                onClose={() => setPopupInfo(null)}
+            >
+                <div>
+                    <a className='text-blue-500' target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${popupInfo.equipment_latitude},${popupInfo.equipment_longitude}`}>{popupInfo.equipment_name}</a>
+                </div>
+            </Popup>
             )}
         </Map>
 
