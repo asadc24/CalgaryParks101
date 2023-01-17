@@ -3,7 +3,7 @@ An app to help find parks in Calgary
 
 Introduction:
 
-YYC-PARKS is a web application aimed to help people find park equipment in the Calgary area. The current iteration of the product features searching based on communities, featuring visualized data and an interactive map for each community. Users can also view equipment near them (using the Geolocation API). I have built additional API endpoints needed for features to be implemented in the future.
+YYC-PARKS is a web application aimed to help people find park equipment in the Calgary area. The current iteration of the product features searching based on communities, featuring visualized data and an interactive map for each community. Users can also view equipment near them (using the Geolocation API).
 
 Technology Used:
 
