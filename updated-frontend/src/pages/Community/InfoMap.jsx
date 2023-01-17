@@ -70,7 +70,7 @@ const InfoMap = ({info}) => {
                     onClose={() => setPopupInfo(null)}
                 >
                     <div>
-                        <a className='text-blue-500' href={`https://www.google.com/maps/search/?api=1&query=${popupInfo.equipment_latitude},${popupInfo.equipment_longitude}`}>{popupInfo.equipment_name}</a>
+                        <a className='text-blue-500' target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${popupInfo.equipment_latitude},${popupInfo.equipment_longitude}`}>{popupInfo.equipment_name}</a>
                     </div>
                 </Popup>
             )}
