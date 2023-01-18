@@ -3,13 +3,25 @@ import Map, { Marker,Popup } from 'react-map-gl';
 
 
 const NearbyMap = ({info, userCoords}) => {
+    const [mapStyle, setMapStyle] = useState("mapbox://styles/mapbox/streets-v12")
+
     const [viewport, setViewport] = useState({
-        latitude: info[1].equipment_latitude,
-        longitude: info[1].equipment_longitude,
+        latitude: userCoords.latitude,
+        longitude: userCoords.longitude,
         // width: '10vw',
         // height: '100vh',
-        zoom: 13
+        zoom: 12
     })
+    
+    const handleViewportChange = viewport => {
+        setViewport(viewport)
+        if (viewport.viewState.zoom > 15.5) {
+          setMapStyle("mapbox://styles/mapbox/satellite-v9");
+        } else {
+          setMapStyle("mapbox://styles/mapbox/streets-v12");
+        }
+      };
+    
 
     const [popupInfo, setPopupInfo] = useState(null);
 
@@ -24,15 +36,14 @@ const NearbyMap = ({info, userCoords}) => {
     function chooseColor(equipment) {
         if(equipment == 'EQUIPMENT BOX') {
             return "blue"
-
         } else if(equipment == 'GOAL POST') {
             return 'red'
         } else if(equipment == 'SCOREBOARD') {
             return 'green'
-        } else if(equipment == 'BASEKETBALL HOOP') {
-            return 'purple'
+        } else if(equipment == 'BASKETBALL HOOP') {
+            return '#EF8200'
         } else if(equipment == 'DISK GOLF BASKET') {
-            return 'brown'
+            return 'purple'
         } else if(equipment == 'PLAYERS BENCH') {
             return 'cyan'
         } else return 'maroon'
@@ -46,8 +57,8 @@ const NearbyMap = ({info, userCoords}) => {
         <Map 
             initialViewState={viewport}
             mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            mapStyle="mapbox://styles/mapbox/streets-v12"
-            onViewportChange={viewport => {setViewport(viewport)}}
+            mapStyle={mapStyle}
+            onMove={handleViewportChange}
         >
 
             {info && info.map(item => (

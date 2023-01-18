@@ -8,7 +8,7 @@ const InfoText = () => {
 
 
   return (
-    <div className='text-white flex justify-center '>
+    <div className='text-black flex justify-center '>
         <h2 className='md:text-4xl sm:text-3xl text-2xl pt-7'>Welcome to the community of {capitalizeWords(community_name.substring(1))}</h2>
     </div>
     

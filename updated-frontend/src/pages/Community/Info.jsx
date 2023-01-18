@@ -11,6 +11,7 @@ import {
   } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import InfoMap from './InfoMap';
+import MapFilter from './MapFilter';
 
 
 ChartJS.register(
@@ -64,6 +65,11 @@ const Info = () => {
       }
 
       let graphOptions = {
+        elements: {
+          bar: {
+            borderWidth: 1,
+          },
+        },
         responsive: true,
         plugins: {
           legend: {
@@ -83,12 +89,13 @@ const Info = () => {
         datasets: [
           {
             data: values,
+            borderColor: 'black',
             backgroundColor: [
-              "rgba(75,192,192,1)",
-              "#ecf0f1",
-              "#50AF95",
-              "#f3ba2f",
-              "#2a71d0",
+              "#0000ff ",
+              "#ff0000",
+              "#00ffff",
+              "#ff00ff",
+              "#000080",
             ],
           },
         ],
@@ -114,21 +121,22 @@ const Info = () => {
     
   return (
     <div>
-        <div className='text-white flex justify-center'>
+        <div className='text-black flex justify-center'>
 
-            <div className="tabs">
-                <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+        <div className="tabs">
+                <ul className="flex flex-wrap text-sm font-medium text-center text-black border-b border-gray-700">
                     <li className="mr-2">
-                        <p className={!showChart ? 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:cursor-pointer' : 'inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500 hover:cursor-pointer'}   onClick={() => {setShowChart(true);setShowMap(false);setShowTable(false)}}>Chart</p>
+                        <p className={!showChart ? 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:cursor-pointer' : 'inline-block p-4 text-emerald-600 bg-[#bdbaaf] rounded-t-lg active hover:cursor-pointer'}   onClick={() => {setShowChart(true);setShowMap(false);setShowTable(false)}}>Chart</p>
                     </li>
                     <li className="mr-2">
-                        <p className={!showMap ? 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:cursor-pointer' : 'inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500 hover:cursor-pointer'}  onClick={() => {setShowChart(false);setShowMap(true);setShowTable(false)}}>Map</p>
+                        <p className={!showMap ? 'inline-block p-4 rounded-t-lg hover:text-gray-600 hover:cursor-pointer' : 'inline-block p-4 text-emerald-600 bg-[#bdbaaf] rounded-t-lg activehover:cursor-pointer'}  onClick={() => {setShowChart(false);setShowMap(true);setShowTable(false)}}>Map</p>
                     </li>
 
                 </ul>
             </div>
         </div>
-
+        
+        <MapFilter/>
         <div className='h-96 flex justify-center pt-4'>
             {graphData && showChart && <Bar options={graphData[0]} data={graphData[1]} />}
             {info && showMap && <InfoMap  info={info}/>}

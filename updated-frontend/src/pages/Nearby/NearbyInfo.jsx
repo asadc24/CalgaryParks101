@@ -39,13 +39,13 @@ const NearbyInfo = () => {
 
   return (
     <div>
-      <div className="text-white flex justify-center ">
+      <div className="text-black flex justify-center ">
         <h2 className="md:text-4xl sm:text-3xl text-2xl pt-7">
           Here is what is near you:
         </h2>
       </div>
-        <p className='text-white flex justify-center'>Please allow the website to use your location if it asks</p>
-        <p className='text-white flex justify-center'>(You are the black marker)</p>
+        <p className='text-black flex justify-center'>Please allow the website to use your location if it asks</p>
+        <p className='text-black flex justify-center'>(You are the black marker)</p>
       <div className="h-96 flex justify-center pt-4">
         {isFetched ? (
           <NearbyMap info={info} userCoords={userCoords}/>
