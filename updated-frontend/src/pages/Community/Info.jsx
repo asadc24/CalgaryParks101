@@ -11,7 +11,6 @@ import {
   } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import InfoMap from './InfoMap';
-import MapFilter from './MapFilter';
 
 
 ChartJS.register(
@@ -32,6 +31,11 @@ const Info = () => {
     const [info, setInfo] = useState([]);
     const [graphData, setGraphData] = useState([{}, { datasets: [] }]);
     const [basketballFilter, setBasketballFilter] = useState(false);
+    const [goalFilter, setGoalFilter] = useState(false);
+    const [scoreboardFilter, setScoreboardFilter] = useState(false);
+    const [boxFilter, setBoxFilter] = useState(false);
+    const [diskGolfFilter, setDiskGolfFilter] = useState(false);
+    const [benchFilter, setBenchFilter] = useState(false);
   
       // First thing we want to do is fetch all info about community. This is going to be used later....
 
@@ -115,6 +119,21 @@ const Info = () => {
     setDataForGraph();
   }, [info]);
 
+  function filterGoalPost() {
+    if(goalFilter) {
+      fetchData()
+      setGoalFilter(false)
+    } else {
+      let filtered = info.filter(obj => obj.equipment_name == "GOAL POST")
+      if (filtered.length > 0) {
+        setInfo(filtered)
+        setGoalFilter(true)
+      } else {
+        alert("This community does not contain any")
+      }
+
+    }
+  }
   function filterBasketball() {
     if(basketballFilter) {
       fetchData()
@@ -124,6 +143,66 @@ const Info = () => {
       if (filtered.length > 0) {
         setInfo(filtered)
         setBasketballFilter(true)
+      } else {
+        alert("This community does not contain any")
+      }
+
+    }
+  }
+  function filterScoreboard() {
+    if(scoreboardFilter) {
+      fetchData()
+      setScoreboardFilter(false)
+    } else {
+      let filtered = info.filter(obj => obj.equipment_name == "SCOREBOARD")
+      if (filtered.length > 0) {
+        setInfo(filtered)
+        setScoreboardFilter(true)
+      } else {
+        alert("This community does not contain any")
+      }
+
+    }
+  }
+  function filterBox() {
+    if(boxFilter) {
+      fetchData()
+      setBoxFilter(false)
+    } else {
+      let filtered = info.filter(obj => obj.equipment_name == "EQUIPMENT BOX")
+      if (filtered.length > 0) {
+        setInfo(filtered)
+        setBoxFilter(true)
+      } else {
+        alert("This community does not contain any")
+      }
+
+    }
+  }
+  function filterDG() {
+    if(diskGolfFilter) {
+      fetchData()
+      setDiskGolfFilter(false)
+    } else {
+      let filtered = info.filter(obj => obj.equipment_name == "DISK GOLF BASKET")
+      if (filtered.length > 0) {
+        setInfo(filtered)
+        setDiskGolfFilter(true)
+      } else {
+        alert("This community does not contain any")
+      }
+
+    }
+  }
+  function filterBench() {
+    if(benchFilter) {
+      fetchData()
+      setBenchFilter(false)
+    } else {
+      let filtered = info.filter(obj => obj.equipment_name == "PLAYERS BENCH")
+      if (filtered.length > 0) {
+        setInfo(filtered)
+        setBenchFilter(true)
       } else {
         alert("This community does not contain any")
       }
@@ -152,8 +231,14 @@ const Info = () => {
                 </ul>
             </div>
         </div>
-        {info && showMap && <div>
-          <button onClick={filterBasketball}>Basketball</button>
+        {info && showMap && <div className='gap-1 flex pt-1 text-black'>
+          <p>Filters:</p>
+          <button className={!basketballFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterBasketball}>Basketball</button>
+          <button className={!goalFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterGoalPost}>Goal Post</button>
+          <button className={!scoreboardFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterScoreboard}>Scoreboard</button>
+          <button className={!boxFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterBox}>Equipment Box</button>
+          <button className={!diskGolfFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterDG}>Disk Golf Basket</button>
+          <button className={!benchFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterBench}>Bench</button>
         </div>}
         <div className='h-96 flex justify-center pt-4'>
             {graphData && showChart && <Bar options={graphData[0]} data={graphData[1]} />}
