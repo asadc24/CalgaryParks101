@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Map, { Marker,Popup } from 'react-map-gl';
 
 
-const InfoMap = ({info}) => {
+const InfoMap = ({info, basketballFilter}) => {
     const [mapStyle, setMapStyle] = useState("mapbox://styles/mapbox/streets-v12")
 
     const [viewport, setViewport] = useState({
@@ -12,6 +12,8 @@ const InfoMap = ({info}) => {
         // height: '100vh',
         zoom: 13
     })
+
+
 
 
 const handleViewportChange = viewport => {
@@ -25,15 +27,9 @@ const handleViewportChange = viewport => {
 
     const [popupInfo, setPopupInfo] = useState(null);
 
-    console.log(info[2])
-    console.log(info[1].equipment_latitude)
-    console.log(info[1].equipment_longitude)
-    console.log(typeof(info))
-    info.forEach(item => {
-        console.log(item)
-    })
 
     function chooseColor(equipment) {
+
         if(equipment == 'EQUIPMENT BOX') {
             return "blue"
 
@@ -49,6 +45,7 @@ const handleViewportChange = viewport => {
             return 'cyan'
         } else return 'maroon'
     }
+
     
     return (
 

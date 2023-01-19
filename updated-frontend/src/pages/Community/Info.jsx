@@ -31,6 +31,7 @@ const Info = () => {
     const [showMap, setShowMap] = useState(false)
     const [info, setInfo] = useState([]);
     const [graphData, setGraphData] = useState([{}, { datasets: [] }]);
+    const [basketballFilter, setBasketballFilter] = useState(false);
   
       // First thing we want to do is fetch all info about community. This is going to be used later....
 
@@ -114,6 +115,22 @@ const Info = () => {
     setDataForGraph();
   }, [info]);
 
+  function filterBasketball() {
+    if(basketballFilter) {
+      fetchData()
+      setBasketballFilter(false)
+    } else {
+      let filtered = info.filter(obj => obj.equipment_name == "BASKETBALL HOOP")
+      if (filtered.length > 0) {
+        setInfo(filtered)
+        setBasketballFilter(true)
+      } else {
+        alert("This community does not contain any")
+      }
+
+    }
+  }
+
 
 
 
@@ -135,11 +152,12 @@ const Info = () => {
                 </ul>
             </div>
         </div>
-        
-        <MapFilter/>
+        {info && showMap && <div>
+          <button onClick={filterBasketball}>Basketball</button>
+        </div>}
         <div className='h-96 flex justify-center pt-4'>
             {graphData && showChart && <Bar options={graphData[0]} data={graphData[1]} />}
-            {info && showMap && <InfoMap  info={info}/>}
+            {info && showMap && <InfoMap  info={info} />}
         </div>
 
     </div>
