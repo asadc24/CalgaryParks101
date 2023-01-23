@@ -233,12 +233,12 @@ const Info = () => {
         </div>
         {info && showMap && <div className='gap-1 flex pt-1 text-black'>
           <p>Filters:</p>
-          <button className={!basketballFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterBasketball}>Basketball</button>
-          <button className={!goalFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterGoalPost}>Goal Post</button>
-          <button className={!scoreboardFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterScoreboard}>Scoreboard</button>
-          <button className={!boxFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterBox}>Equipment Box</button>
-          <button className={!diskGolfFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterDG}>Disk Golf Basket</button>
-          <button className={!benchFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-slate-400'} onClick={filterBench}>Bench</button>
+          <button className={!basketballFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-emerald-600'} onClick={filterBasketball}>Basketball</button>
+          <button className={!goalFilter ? 'p-2 border-black border ' : 'p-2 border-black border bg-emerald-600'} onClick={filterGoalPost}>Goal Post</button>
+          <button className={!scoreboardFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-emerald-600'} onClick={filterScoreboard}>Scoreboard</button>
+          <button className={!boxFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-emerald-600'} onClick={filterBox}>Equipment Box</button>
+          <button className={!diskGolfFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-emerald-600'} onClick={filterDG}>Disk Golf Basket</button>
+          <button className={!benchFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-emerald-600'} onClick={filterBench}>Bench</button>
         </div>}
         <div className='h-96 flex justify-center pt-4'>
             {graphData && showChart && <Bar options={graphData[0]} data={graphData[1]} />}
