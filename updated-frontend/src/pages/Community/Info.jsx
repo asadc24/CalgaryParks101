@@ -231,7 +231,7 @@ const Info = () => {
                 </ul>
             </div>
         </div>
-        {info && showMap && <div className='gap-1 flex pt-1 text-black'>
+        {info && showMap && <div className='gap-1 flex-col pt-1 text-black '>
           <p>Filters:</p>
           <button className={!basketballFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-emerald-600'} onClick={filterBasketball}>Basketball</button>
           <button className={!goalFilter ? 'p-2 border-black border ' : 'p-2 border-black border bg-emerald-600'} onClick={filterGoalPost}>Goal Post</button>

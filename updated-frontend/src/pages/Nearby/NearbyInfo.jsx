@@ -153,7 +153,7 @@ const NearbyInfo = () => {
       </div>
         <p className='text-black flex justify-center'>Please allow the website to use your location if it asks</p>
         <p className='text-black flex justify-center'>(You are the black marker)</p>
-      {info && <div className='gap-1 flex-col pt-1 text-black '>
+      {isFetched && <div className='gap-1 flex-col pt-1 text-black '>
           <p>Filters:</p>
           <button className={!basketballFilter ? 'p-2 border-black border' : 'p-2 border-black border bg-emerald-600'} onClick={filterBasketball}>Basketball</button>
           <button className={!goalFilter ? 'p-2 border-black border ' : 'p-2 border-black border bg-emerald-600'} onClick={filterGoalPost}>Goal Post</button>
